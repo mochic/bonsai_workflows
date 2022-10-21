@@ -1673,9 +1673,9 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="io:EnumerateFiles">
-          <io:Path>stimuli\images - NoGo</io:Path>
-          <io:SearchPattern>/audio/0/*.wav</io:SearchPattern>
-          <io:SearchOption>AllDirectories</io:SearchOption>
+          <io:Path>stimuli\audio\0</io:Path>
+          <io:SearchPattern>*.wav</io:SearchPattern>
+          <io:SearchOption>TopDirectoryOnly</io:SearchOption>
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
@@ -1709,8 +1709,8 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="io:EnumerateFiles">
-          <io:Path>stimuli\images - NoGo</io:Path>
-          <io:SearchPattern>/audio/1/*.wav</io:SearchPattern>
+          <io:Path>stimuli\audio\1</io:Path>
+          <io:SearchPattern>*.wav</io:SearchPattern>
           <io:SearchOption>AllDirectories</io:SearchOption>
         </Combinator>
       </Expression>
@@ -1743,12 +1743,10 @@
         <Name>Audio1</Name>
         <rx:BufferSize xsi:nil="true" />
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="io:EnumerateFiles">
-          <io:Path>stimuli\images - NoGo</io:Path>
-          <io:SearchPattern>/gratings/0.csv</io:SearchPattern>
-          <io:SearchOption>AllDirectories</io:SearchOption>
-        </Combinator>
+      <Expression xsi:type="io:CsvReader">
+        <io:FileName>stimuli\gratings\0.csv</io:FileName>
+        <io:ListSeparator>,</io:ListSeparator>
+        <io:SkipRows>1</io:SkipRows>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>LoadGratingsCsv</Name>
@@ -1756,10 +1754,6 @@
           <Nodes>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="io:CsvReader">
-              <io:ListSeparator>,</io:ListSeparator>
-              <io:SkipRows>0</io:SkipRows>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -1796,7 +1790,6 @@ double.Parse(it[3]) as Duration)</scr:Expression>
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1804,12 +1797,10 @@ double.Parse(it[3]) as Duration)</scr:Expression>
         <Name>Gratings0</Name>
         <rx:BufferSize xsi:nil="true" />
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="io:EnumerateFiles">
-          <io:Path>stimuli\images - NoGo</io:Path>
-          <io:SearchPattern>/gratings/1.csv</io:SearchPattern>
-          <io:SearchOption>AllDirectories</io:SearchOption>
-        </Combinator>
+      <Expression xsi:type="io:CsvReader">
+        <io:FileName>stimuli\gratings\1.csv</io:FileName>
+        <io:ListSeparator>,</io:ListSeparator>
+        <io:SkipRows>1</io:SkipRows>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>LoadGratingsCsv</Name>
@@ -1817,10 +1808,6 @@ double.Parse(it[3]) as Duration)</scr:Expression>
           <Nodes>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="io:CsvReader">
-              <io:ListSeparator>,</io:ListSeparator>
-              <io:SkipRows>0</io:SkipRows>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -1857,7 +1844,6 @@ double.Parse(it[3]) as Duration)</scr:Expression>
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1899,8 +1885,6 @@ double.Parse(it[3]) as Duration)</scr:Expression>
       <Edge From="21" To="22" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
       <Edge From="23" To="28" Label="Source1" />
-      <Edge From="23" To="32" Label="Source1" />
-      <Edge From="23" To="35" Label="Source1" />
       <Edge From="24" To="25" Label="Source1" />
       <Edge From="25" To="26" Label="Source1" />
       <Edge From="26" To="27" Label="Source1" />
