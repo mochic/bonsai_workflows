@@ -155,15 +155,23 @@
                   <Expression xsi:type="SubscribeSubject">
                     <Name>GoIndex</Name>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:SequenceEqual" />
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="Value" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Equal">
+                    <Operand xsi:type="IntProperty">
+                      <Value>0</Value>
+                    </Operand>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="2" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source2" />
-                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="0" To="3" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -261,7 +269,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="MemberSelector">
-                    <Selector>Item1</Selector>
+                    <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="al:PlaySource" />
@@ -600,7 +608,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="MemberSelector">
-                    <Selector>Item1</Selector>
+                    <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="al:PlaySource" />
@@ -1673,9 +1681,9 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="io:EnumerateFiles">
-          <io:Path>stimuli\audio\0</io:Path>
-          <io:SearchPattern>*.wav</io:SearchPattern>
-          <io:SearchOption>TopDirectoryOnly</io:SearchOption>
+          <io:Path>stimuli\audio</io:Path>
+          <io:SearchPattern>0.wav</io:SearchPattern>
+          <io:SearchOption>AllDirectories</io:SearchOption>
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
@@ -1686,8 +1694,14 @@
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="FileName" />
+              </PropertyMappings>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="al:AudioReader">
+                <al:FileName>stimuli\audio\0.wav</al:FileName>
                 <al:BufferLength>10</al:BufferLength>
                 <al:SampleRate>0</al:SampleRate>
               </Combinator>
@@ -1697,6 +1711,7 @@
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1709,9 +1724,9 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="io:EnumerateFiles">
-          <io:Path>stimuli\audio\1</io:Path>
-          <io:SearchPattern>*.wav</io:SearchPattern>
-          <io:SearchOption>AllDirectories</io:SearchOption>
+          <io:Path>stimuli\audio</io:Path>
+          <io:SearchPattern>1.wav</io:SearchPattern>
+          <io:SearchOption>TopDirectoryOnly</io:SearchOption>
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
@@ -1722,8 +1737,14 @@
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="FileName" />
+              </PropertyMappings>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="al:AudioReader">
+                <al:FileName>stimuli\audio\1.wav</al:FileName>
                 <al:BufferLength>10</al:BufferLength>
                 <al:SampleRate>0</al:SampleRate>
               </Combinator>
@@ -1733,6 +1754,7 @@
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1834,7 +1856,7 @@ double.Parse(it[3]) as Duration)</scr:Expression>
                 <p2:Contrast>1</p2:Contrast>
                 <p2:SpatialFrequency>10</p2:SpatialFrequency>
                 <p2:TemporalFrequency>0</p2:TemporalFrequency>
-                <p2:Orientation>0</p2:Orientation>
+                <p2:Orientation>90</p2:Orientation>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
