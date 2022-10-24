@@ -221,6 +221,23 @@
                   <Expression xsi:type="MemberSelector">
                     <Selector>Item1</Selector>
                   </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawGratings.bonsai">
+                    <LocationX>0</LocationX>
+                    <LocationY>0</LocationY>
+                    <Layer>0</Layer>
+                    <Angle>0</Angle>
+                    <SpatialFrequency>5</SpatialFrequency>
+                    <TemporalFrequency>0</TemporalFrequency>
+                    <Phase>0</Phase>
+                    <SquareWave>false</SquareWave>
+                    <Contrast>1</Contrast>
+                    <DutyCycle xsi:nil="true" />
+                    <Radius>1</Radius>
+                    <Aperture>0</Aperture>
+                    <Opacity>1</Opacity>
+                    <ExtentX>10</ExtentX>
+                    <ExtentY>10</ExtentY>
+                  </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>GoPresented</Name>
                   </Expression>
@@ -241,7 +258,7 @@
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="19" Label="Source2" />
+                  <Edge From="0" To="20" Label="Source2" />
                   <Edge From="1" To="15" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
@@ -252,7 +269,7 @@
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="8" To="11" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="22" Label="Source2" />
+                  <Edge From="10" To="23" Label="Source2" />
                   <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
                   <Edge From="14" To="15" Label="Source2" />
@@ -264,6 +281,7 @@
                   <Edge From="20" To="21" Label="Source1" />
                   <Edge From="21" To="22" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
+                  <Edge From="23" To="24" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
