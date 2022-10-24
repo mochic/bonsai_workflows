@@ -140,9 +140,6 @@
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Draw</Name>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:CombineLatest" />
-                  </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>GoPresented</Name>
                   </Expression>
@@ -197,7 +194,7 @@
                     <Name>Gratings2</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:WithLatestFrom" />
+                    <Combinator xsi:type="rx:CombineLatest" />
                   </Expression>
                   <Expression xsi:type="rx:Sink">
                     <Workflow>
@@ -225,7 +222,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="MemberSelector">
-                    <Selector>Item1</Selector>
+                    <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>GoPresented</Name>
@@ -247,22 +244,22 @@
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="20" Label="Source2" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="16" Label="Source1" />
+                  <Edge From="0" To="19" Label="Source2" />
+                  <Edge From="1" To="15" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="10" Label="Source2" />
-                  <Edge From="6" To="8" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source2" />
+                  <Edge From="4" To="9" Label="Source2" />
+                  <Edge From="5" To="7" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source2" />
+                  <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="8" To="11" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="9" To="12" Label="Source1" />
-                  <Edge From="10" To="11" Label="Source1" />
-                  <Edge From="11" To="23" Label="Source2" />
+                  <Edge From="10" To="22" Label="Source2" />
+                  <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
-                  <Edge From="13" To="14" Label="Source1" />
-                  <Edge From="15" To="16" Label="Source2" />
+                  <Edge From="14" To="15" Label="Source2" />
+                  <Edge From="15" To="16" Label="Source1" />
                   <Edge From="16" To="17" Label="Source1" />
                   <Edge From="17" To="18" Label="Source1" />
                   <Edge From="18" To="19" Label="Source1" />
@@ -270,7 +267,6 @@
                   <Edge From="20" To="21" Label="Source1" />
                   <Edge From="21" To="22" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="24" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -528,7 +524,7 @@ double.Parse(it[3]) as Duration)</scr:Expression>
               <Combinator xsi:type="p2:CreateGratingTrial">
                 <p2:Delay>0</p2:Delay>
                 <p2:Duration>1</p2:Duration>
-                <p2:Diameter>100</p2:Diameter>
+                <p2:Diameter>50</p2:Diameter>
                 <p2:X>0</p2:X>
                 <p2:Y>0</p2:Y>
                 <p2:Contrast>1</p2:Contrast>
@@ -544,6 +540,9 @@ double.Parse(it[3]) as Duration)</scr:Expression>
               <Aperture>0</Aperture>
               <Opacity>1</Opacity>
             </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Repeat" />
+            </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
@@ -552,14 +551,15 @@ double.Parse(it[3]) as Duration)</scr:Expression>
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Repeat" />
+        <Combinator xsi:type="rx:Concat" />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Concat" />
+        <Combinator xsi:type="rx:Repeat" />
       </Expression>
       <Expression xsi:type="rx:ReplaySubject">
         <Name>Gratings1</Name>
