@@ -6,10 +6,10 @@
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p1="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:al="clr-namespace:Bonsai.Audio;assembly=Bonsai.Audio"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
-                 xmlns:al="clr-namespace:Bonsai.Audio;assembly=Bonsai.Audio"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -117,25 +117,7 @@
               <Name>GratingsParams0</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>GratingsParams1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>GratingsParams1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
               <Name>GratingsParams0</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>GratingsParams0</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>GratingsParams0</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>GratingsParams1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>GratingsParams1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Random</Name>
@@ -603,6 +585,21 @@
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Audio0</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Audio1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Audio1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Audio0</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>GratingsParams1</Name>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
@@ -781,6 +778,9 @@
                   <Edge From="3" To="4" Label="Source1" />
                 </Edges>
               </Workflow>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>GratingsParams1</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:WithLatestFrom" />
@@ -1008,7 +1008,7 @@
               <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="rx:SelectMany">
-              <Name>GoGratingsTrial</Name>
+              <Name>GoAudioTrial</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="Combinator">
@@ -1078,29 +1078,8 @@
                   <Expression xsi:type="MemberSelector">
                     <Selector>Item2</Selector>
                   </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Contrast" Selector="Contrast" />
-                      <Property Name="TemporalFrequency" Selector="Speed" />
-                      <Property Name="Angle" Selector="Angle" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawGratings.bonsai">
-                    <LocationX>0</LocationX>
-                    <LocationY>0</LocationY>
-                    <Layer>0</Layer>
-                    <Angle>5156.62</Angle>
-                    <SpatialFrequency>10</SpatialFrequency>
-                    <TemporalFrequency>0</TemporalFrequency>
-                    <Phase>0</Phase>
-                    <SquareWave>false</SquareWave>
-                    <Contrast>1</Contrast>
-                    <DutyCycle xsi:nil="true" />
-                    <Radius>10</Radius>
-                    <Aperture>0</Aperture>
-                    <Opacity>1</Opacity>
-                    <ExtentX>100</ExtentX>
-                    <ExtentY>100</ExtentY>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="al:PlaySource" />
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>GoPresented</Name>
@@ -1122,9 +1101,8 @@
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="20" Label="Source2" />
+                  <Edge From="0" To="19" Label="Source2" />
                   <Edge From="1" To="15" Label="Source1" />
-                  <Edge From="1" To="18" Label="Source2" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="9" Label="Source2" />
@@ -1134,7 +1112,7 @@
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="8" To="11" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="23" Label="Source2" />
+                  <Edge From="10" To="22" Label="Source2" />
                   <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
                   <Edge From="14" To="15" Label="Source2" />
@@ -1146,7 +1124,6 @@
                   <Edge From="20" To="21" Label="Source1" />
                   <Edge From="21" To="22" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="24" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -1187,7 +1164,7 @@
               <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="rx:SelectMany">
-              <Name>NoGoGratingsTrial</Name>
+              <Name>NoGoAudioTrial</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="Combinator">
@@ -1257,29 +1234,8 @@
                   <Expression xsi:type="MemberSelector">
                     <Selector>Item2</Selector>
                   </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Contrast" Selector="Contrast" />
-                      <Property Name="TemporalFrequency" Selector="Speed" />
-                      <Property Name="Angle" Selector="Angle" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawGratings.bonsai">
-                    <LocationX>0</LocationX>
-                    <LocationY>0</LocationY>
-                    <Layer>0</Layer>
-                    <Angle>90</Angle>
-                    <SpatialFrequency>10</SpatialFrequency>
-                    <TemporalFrequency>0</TemporalFrequency>
-                    <Phase>0</Phase>
-                    <SquareWave>false</SquareWave>
-                    <Contrast>1</Contrast>
-                    <DutyCycle xsi:nil="true" />
-                    <Radius>10</Radius>
-                    <Aperture>0</Aperture>
-                    <Opacity>1</Opacity>
-                    <ExtentX>100</ExtentX>
-                    <ExtentY>100</ExtentY>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="al:PlaySource" />
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>NoGoPresented</Name>
@@ -1301,9 +1257,8 @@
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="20" Label="Source2" />
+                  <Edge From="0" To="19" Label="Source2" />
                   <Edge From="1" To="15" Label="Source1" />
-                  <Edge From="1" To="18" Label="Source2" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="9" Label="Source2" />
@@ -1313,7 +1268,7 @@
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="8" To="11" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="23" Label="Source2" />
+                  <Edge From="10" To="22" Label="Source2" />
                   <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
                   <Edge From="14" To="15" Label="Source2" />
@@ -1325,7 +1280,6 @@
                   <Edge From="20" To="21" Label="Source1" />
                   <Edge From="21" To="22" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="24" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -1386,7 +1340,7 @@
               <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="rx:SelectMany">
-              <Name>GoGratingsTrial</Name>
+              <Name>GoAudioTrial</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="Combinator">
@@ -1456,29 +1410,8 @@
                   <Expression xsi:type="MemberSelector">
                     <Selector>Item2</Selector>
                   </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Contrast" Selector="Contrast" />
-                      <Property Name="TemporalFrequency" Selector="Speed" />
-                      <Property Name="Angle" Selector="Angle" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawGratings.bonsai">
-                    <LocationX>0</LocationX>
-                    <LocationY>0</LocationY>
-                    <Layer>0</Layer>
-                    <Angle>90</Angle>
-                    <SpatialFrequency>10</SpatialFrequency>
-                    <TemporalFrequency>0</TemporalFrequency>
-                    <Phase>0</Phase>
-                    <SquareWave>false</SquareWave>
-                    <Contrast>1</Contrast>
-                    <DutyCycle xsi:nil="true" />
-                    <Radius>10</Radius>
-                    <Aperture>0</Aperture>
-                    <Opacity>1</Opacity>
-                    <ExtentX>100</ExtentX>
-                    <ExtentY>100</ExtentY>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="al:PlaySource" />
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>GoPresented</Name>
@@ -1500,9 +1433,8 @@
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="20" Label="Source2" />
+                  <Edge From="0" To="19" Label="Source2" />
                   <Edge From="1" To="15" Label="Source1" />
-                  <Edge From="1" To="18" Label="Source2" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="9" Label="Source2" />
@@ -1512,7 +1444,7 @@
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="8" To="11" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="23" Label="Source2" />
+                  <Edge From="10" To="22" Label="Source2" />
                   <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
                   <Edge From="14" To="15" Label="Source2" />
@@ -1524,7 +1456,6 @@
                   <Edge From="20" To="21" Label="Source1" />
                   <Edge From="21" To="22" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="24" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -1565,7 +1496,7 @@
               <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="rx:SelectMany">
-              <Name>NoGoGratingsTrial</Name>
+              <Name>NoGoAudioTrial</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="Combinator">
@@ -1635,29 +1566,8 @@
                   <Expression xsi:type="MemberSelector">
                     <Selector>Item2</Selector>
                   </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Contrast" Selector="Contrast" />
-                      <Property Name="TemporalFrequency" Selector="Speed" />
-                      <Property Name="Angle" Selector="Angle" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawGratings.bonsai">
-                    <LocationX>0</LocationX>
-                    <LocationY>0</LocationY>
-                    <Layer>0</Layer>
-                    <Angle>0</Angle>
-                    <SpatialFrequency>10</SpatialFrequency>
-                    <TemporalFrequency>0</TemporalFrequency>
-                    <Phase>0</Phase>
-                    <SquareWave>false</SquareWave>
-                    <Contrast>1</Contrast>
-                    <DutyCycle xsi:nil="true" />
-                    <Radius>10</Radius>
-                    <Aperture>0</Aperture>
-                    <Opacity>1</Opacity>
-                    <ExtentX>100</ExtentX>
-                    <ExtentY>100</ExtentY>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="al:PlaySource" />
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>NoGoPresented</Name>
@@ -1679,9 +1589,8 @@
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="20" Label="Source2" />
+                  <Edge From="0" To="19" Label="Source2" />
                   <Edge From="1" To="15" Label="Source1" />
-                  <Edge From="1" To="18" Label="Source2" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="9" Label="Source2" />
@@ -1691,7 +1600,7 @@
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="8" To="11" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="23" Label="Source2" />
+                  <Edge From="10" To="22" Label="Source2" />
                   <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
                   <Edge From="14" To="15" Label="Source2" />
@@ -1703,7 +1612,6 @@
                   <Edge From="20" To="21" Label="Source1" />
                   <Edge From="21" To="22" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="24" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -1721,40 +1629,40 @@
             </Expression>
           </Nodes>
           <Edges>
-            <Edge From="0" To="12" Label="Source1" />
-            <Edge From="1" To="17" Label="Source2" />
-            <Edge From="2" To="26" Label="Source2" />
-            <Edge From="3" To="30" Label="Source2" />
-            <Edge From="4" To="21" Label="Source2" />
-            <Edge From="5" To="36" Label="Source2" />
-            <Edge From="6" To="40" Label="Source2" />
-            <Edge From="7" To="45" Label="Source2" />
-            <Edge From="8" To="49" Label="Source2" />
+            <Edge From="0" To="6" Label="Source1" />
+            <Edge From="1" To="11" Label="Source2" />
+            <Edge From="2" To="15" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="7" To="33" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="8" To="18" Label="Source1" />
             <Edge From="9" To="10" Label="Source1" />
+            <Edge From="9" To="14" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source2" />
+            <Edge From="11" To="12" Label="Source1" />
             <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="13" To="33" Label="Source1" />
+            <Edge From="13" To="52" Label="Source5" />
             <Edge From="14" To="15" Label="Source1" />
-            <Edge From="14" To="24" Label="Source1" />
             <Edge From="15" To="16" Label="Source1" />
-            <Edge From="15" To="20" Label="Source1" />
             <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="17" To="52" Label="Source6" />
             <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="52" Label="Source5" />
-            <Edge From="20" To="21" Label="Source1" />
-            <Edge From="21" To="22" Label="Source1" />
-            <Edge From="22" To="23" Label="Source1" />
-            <Edge From="23" To="52" Label="Source6" />
-            <Edge From="24" To="25" Label="Source1" />
-            <Edge From="24" To="29" Label="Source1" />
+            <Edge From="18" To="28" Label="Source1" />
+            <Edge From="19" To="25" Label="Source1" />
+            <Edge From="20" To="40" Label="Source2" />
+            <Edge From="21" To="45" Label="Source2" />
+            <Edge From="22" To="49" Label="Source2" />
+            <Edge From="23" To="36" Label="Source2" />
+            <Edge From="24" To="25" Label="Source2" />
             <Edge From="25" To="26" Label="Source1" />
             <Edge From="26" To="27" Label="Source1" />
-            <Edge From="27" To="28" Label="Source1" />
-            <Edge From="28" To="52" Label="Source7" />
-            <Edge From="29" To="30" Label="Source1" />
+            <Edge From="27" To="52" Label="Source7" />
+            <Edge From="28" To="30" Label="Source1" />
+            <Edge From="29" To="30" Label="Source2" />
             <Edge From="30" To="31" Label="Source1" />
             <Edge From="31" To="32" Label="Source1" />
             <Edge From="32" To="52" Label="Source8" />
