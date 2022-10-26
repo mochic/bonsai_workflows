@@ -203,13 +203,14 @@
                     <PropertyMappings>
                       <Property Name="Contrast" Selector="Contrast" />
                       <Property Name="TemporalFrequency" Selector="Speed" />
+                      <Property Name="Angle" Selector="Angle" />
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawGratings.bonsai">
                     <LocationX>0</LocationX>
                     <LocationY>0</LocationY>
                     <Layer>0</Layer>
-                    <Angle>0</Angle>
+                    <Angle>90</Angle>
                     <SpatialFrequency>10</SpatialFrequency>
                     <TemporalFrequency>0</TemporalFrequency>
                     <Phase>0</Phase>
@@ -540,11 +541,12 @@ double.Parse(it[3]) as Duration)</scr:Expression>
         <rx:BufferSize xsi:nil="true" />
       </Expression>
       <Expression xsi:type="io:CsvReader">
-        <io:FileName>1.csv</io:FileName>
+        <io:FileName>stimuli\gratings\1.csv</io:FileName>
         <io:ListSeparator>,</io:ListSeparator>
         <io:SkipRows>1</io:SkipRows>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
+        <Name>LoadCsvGratings2</Name>
         <Workflow>
           <Nodes>
             <Expression xsi:type="WorkflowInput">
@@ -555,7 +557,9 @@ double.Parse(it[3]) as Duration)</scr:Expression>
 double.Parse(it[0]) * Math.PI / 180 as Orientation,
 double.Parse(it[1]) as Speed,
 double.Parse(it[2]) as Contrast,
-double.Parse(it[3]) as Duration)</scr:Expression>
+double.Parse(it[3]) as Duration,
+double.Parse(it[4]) as Angle
+)</scr:Expression>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -565,11 +569,41 @@ double.Parse(it[3]) as Duration)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Repeat" />
+      <Expression xsi:type="rx:ReplaySubject">
+        <Name>GratingsParams0</Name>
+        <rx:BufferSize xsi:nil="true" />
+      </Expression>
+      <Expression xsi:type="io:CsvReader">
+        <io:FileName>stimuli\gratings\0.csv</io:FileName>
+        <io:ListSeparator>,</io:ListSeparator>
+        <io:SkipRows>1</io:SkipRows>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>LoadCsvGratings2</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+double.Parse(it[0]) * Math.PI / 180 as Orientation,
+double.Parse(it[1]) as Speed,
+double.Parse(it[2]) as Contrast,
+double.Parse(it[3]) as Duration,
+double.Parse(it[4]) as Angle
+)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="rx:ReplaySubject">
-        <Name>GratingsParams2</Name>
+        <Name>GratingsParams1</Name>
         <rx:BufferSize xsi:nil="true" />
       </Expression>
     </Nodes>
@@ -610,7 +644,8 @@ double.Parse(it[3]) as Duration)</scr:Expression>
       <Edge From="41" To="42" Label="Source1" />
       <Edge From="43" To="44" Label="Source1" />
       <Edge From="44" To="45" Label="Source1" />
-      <Edge From="45" To="46" Label="Source1" />
+      <Edge From="46" To="47" Label="Source1" />
+      <Edge From="47" To="48" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

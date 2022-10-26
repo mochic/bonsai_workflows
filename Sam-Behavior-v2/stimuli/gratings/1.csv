@@ -1,4 +1,2 @@
-Orientation,Speed,Contrast,Duration
-90,0,1,1
-0,0,1,1
-45,0,1,1
+Orientation,Speed,Contrast,Duration,Angle
+0,0,1,1,0
