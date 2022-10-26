@@ -1079,7 +1079,10 @@
                     <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="al:PlaySource" />
+                    <Combinator xsi:type="al:AudioPlayback">
+                      <al:SampleRate>44100</al:SampleRate>
+                      <al:State>Playing</al:State>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>GoPresented</Name>
@@ -1235,7 +1238,10 @@
                     <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="al:PlaySource" />
+                    <Combinator xsi:type="al:AudioPlayback">
+                      <al:SampleRate>44100</al:SampleRate>
+                      <al:State>Playing</al:State>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>NoGoPresented</Name>
@@ -1411,7 +1417,10 @@
                     <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="al:PlaySource" />
+                    <Combinator xsi:type="al:AudioPlayback">
+                      <al:SampleRate>44100</al:SampleRate>
+                      <al:State>Playing</al:State>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>GoPresented</Name>
@@ -1567,7 +1576,10 @@
                     <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="al:PlaySource" />
+                    <Combinator xsi:type="al:AudioPlayback">
+                      <al:SampleRate>44100</al:SampleRate>
+                      <al:State>Playing</al:State>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>NoGoPresented</Name>
