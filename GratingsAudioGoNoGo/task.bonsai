@@ -4,8 +4,8 @@
                  xmlns:gl="clr-namespace:Bonsai.Shaders;assembly=Bonsai.Shaders"
                  xmlns:res="clr-namespace:Bonsai.Resources;assembly=Bonsai.System"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:al="clr-namespace:Bonsai.Audio;assembly=Bonsai.Audio"
                  xmlns:p1="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
+                 xmlns:al="clr-namespace:Bonsai.Audio;assembly=Bonsai.Audio"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
@@ -977,15 +977,19 @@
         <io:Suffix>None</io:Suffix>
         <io:IncludeHeader>true</io:IncludeHeader>
       </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Path" />
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="io:EnumerateFiles">
           <io:Path>stimuli\audio</io:Path>
           <io:SearchPattern>*.wav</io:SearchPattern>
-          <io:SearchOption>AllDirectories</io:SearchOption>
+          <io:SearchOption>TopDirectoryOnly</io:SearchOption>
         </Combinator>
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>audio.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>true</io:Overwrite>
+        <io:Suffix>None</io:Suffix>
+        <io:IncludeHeader>true</io:IncludeHeader>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>LoadAudio</Name>
@@ -994,6 +998,11 @@
           <Nodes>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="FileName" />
+              </PropertyMappings>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="al:AudioReader">
@@ -1006,6 +1015,7 @@
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1025,7 +1035,9 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="Equal">
-              <Operand xsi:type="StringProperty" />
+              <Operand xsi:type="StringProperty">
+                <Value>0.csv</Value>
+              </Operand>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -1061,7 +1073,9 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="NotEqual">
-              <Operand xsi:type="StringProperty" />
+              <Operand xsi:type="StringProperty">
+                <Value>0.csv</Value>
+              </Operand>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -1085,8 +1099,75 @@
         <Combinator xsi:type="io:EnumerateFiles">
           <io:Path>stimuli\gratings</io:Path>
           <io:SearchPattern>*.csv</io:SearchPattern>
-          <io:SearchOption>AllDirectories</io:SearchOption>
+          <io:SearchOption>TopDirectoryOnly</io:SearchOption>
         </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>IsGoStim</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>GoFilename</Name>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Value" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="StringProperty">
+                <Value>0.csv</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="3" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>IsNoGoStim</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>GoFilename</Name>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Value" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="NotEqual">
+              <Operand xsi:type="StringProperty">
+                <Value>0.csv</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="3" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>files.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>true</io:Overwrite>
+        <io:Suffix>None</io:Suffix>
+        <io:IncludeHeader>true</io:IncludeHeader>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>LoadGratingsCsv</Name>
@@ -1095,7 +1176,13 @@
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings>
+                <Property Name="FileName" />
+              </PropertyMappings>
+            </Expression>
             <Expression xsi:type="io:CsvReader">
+              <io:FileName>stimuli\gratings\0.csv</io:FileName>
               <io:ListSeparator>,</io:ListSeparator>
               <io:SkipRows>0</io:SkipRows>
             </Expression>
@@ -1114,33 +1201,6 @@ double.Parse(it[4]) as Angle
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="rx:Condition">
-        <Name>IsGoStim</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>GoFilename</Name>
-            </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="Value" />
-              </PropertyMappings>
-            </Expression>
-            <Expression xsi:type="Equal">
-              <Operand xsi:type="StringProperty" />
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="3" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source2" />
             <Edge From="3" To="4" Label="Source1" />
           </Edges>
         </Workflow>
@@ -1152,34 +1212,6 @@ double.Parse(it[4]) as Angle
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Zip" />
-      </Expression>
-      <Expression xsi:type="rx:Condition">
-        <Name>IsNoGoStim</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>GoFilename</Name>
-            </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="Value" />
-              </PropertyMappings>
-            </Expression>
-            <Expression xsi:type="NotEqual">
-              <Operand xsi:type="StringProperty" />
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="3" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source2" />
-            <Edge From="3" To="4" Label="Source1" />
-          </Edges>
-        </Workflow>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="StringProperty">
@@ -1206,7 +1238,9 @@ double.Parse(it[4]) as Angle
         <Property Name="Value" />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="StringProperty" />
+        <Combinator xsi:type="StringProperty">
+          <Value>0.csv</Value>
+        </Combinator>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>GoFilename</Name>
@@ -1232,34 +1266,34 @@ double.Parse(it[4]) as Angle
       <Edge From="20" To="21" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
-      <Edge From="23" To="32" Label="Source1" />
+      <Edge From="23" To="26" Label="Source1" />
+      <Edge From="23" To="29" Label="Source1" />
       <Edge From="24" To="25" Label="Source1" />
-      <Edge From="24" To="26" Label="Source1" />
-      <Edge From="24" To="29" Label="Source1" />
       <Edge From="25" To="31" Label="Source3" />
       <Edge From="25" To="28" Label="Source3" />
       <Edge From="26" To="28" Label="Source1" />
       <Edge From="27" To="28" Label="Source2" />
-      <Edge From="28" To="40" Label="Source1" />
+      <Edge From="28" To="41" Label="Source1" />
       <Edge From="29" To="31" Label="Source1" />
       <Edge From="30" To="31" Label="Source2" />
-      <Edge From="31" To="40" Label="Source2" />
+      <Edge From="31" To="41" Label="Source2" />
       <Edge From="32" To="33" Label="Source1" />
       <Edge From="32" To="34" Label="Source1" />
-      <Edge From="32" To="37" Label="Source1" />
-      <Edge From="33" To="36" Label="Source3" />
-      <Edge From="33" To="39" Label="Source3" />
-      <Edge From="34" To="36" Label="Source1" />
-      <Edge From="35" To="36" Label="Source2" />
+      <Edge From="32" To="35" Label="Source1" />
+      <Edge From="33" To="38" Label="Source1" />
+      <Edge From="34" To="40" Label="Source1" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="36" To="38" Label="Source3" />
       <Edge From="36" To="40" Label="Source3" />
-      <Edge From="37" To="39" Label="Source1" />
-      <Edge From="38" To="39" Label="Source2" />
-      <Edge From="39" To="40" Label="Source4" />
-      <Edge From="40" To="41" Label="Source1" />
-      <Edge From="40" To="42" Label="Source1" />
-      <Edge From="42" To="43" Label="Source1" />
-      <Edge From="44" To="45" Label="Source1" />
+      <Edge From="37" To="38" Label="Source2" />
+      <Edge From="38" To="41" Label="Source3" />
+      <Edge From="39" To="40" Label="Source2" />
+      <Edge From="40" To="41" Label="Source4" />
+      <Edge From="41" To="42" Label="Source1" />
+      <Edge From="41" To="43" Label="Source1" />
+      <Edge From="43" To="44" Label="Source1" />
       <Edge From="45" To="46" Label="Source1" />
+      <Edge From="46" To="47" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
