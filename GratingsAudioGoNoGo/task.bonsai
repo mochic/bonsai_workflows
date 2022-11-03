@@ -437,7 +437,7 @@ double.Parse(it[4]) as Angle
               <Combinator xsi:type="al:AudioReader">
                 <al:FileName>stimuli\audio\0.wav</al:FileName>
                 <al:BufferLength>10</al:BufferLength>
-                <al:SampleRate>0</al:SampleRate>
+                <al:SampleRate>44100</al:SampleRate>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -908,7 +908,7 @@ double.Parse(it[4]) as Angle
                     <LocationX>0</LocationX>
                     <LocationY>0</LocationY>
                     <Layer>0</Layer>
-                    <Angle>5156.62</Angle>
+                    <Angle>0</Angle>
                     <SpatialFrequency>10</SpatialFrequency>
                     <TemporalFrequency>0</TemporalFrequency>
                     <Phase>0</Phase>
@@ -1141,7 +1141,10 @@ double.Parse(it[4]) as Angle
                     <Selector>Item1</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="al:PlaySource" />
+                    <Combinator xsi:type="al:AudioPlayback">
+                      <al:SampleRate>44100</al:SampleRate>
+                      <al:State>Playing</al:State>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>GoPresented</Name>
@@ -1325,7 +1328,10 @@ double.Parse(it[4]) as Angle
                     <Selector>Item1</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="al:PlaySource" />
+                    <Combinator xsi:type="al:AudioPlayback">
+                      <al:SampleRate>44100</al:SampleRate>
+                      <al:State>Playing</al:State>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
                     <Name>NoGoPresented</Name>
