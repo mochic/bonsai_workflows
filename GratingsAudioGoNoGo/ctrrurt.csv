@@ -1,3 +1,0 @@
-Item1.Item1.Orientation,Item1.Item1.Speed,Item1.Item1.Contrast,Item1.Item1.Duration,Item1.Item1.Angle,Item1,Item2.Item1.ElementType,Item2.Item1.Size.Width,Item2.Item1.Size.Height,Item2.Item1.IsInvalid,Item2.Item1.Rows,Item2.Item1.Cols,Item2.Item1.Step,Item2.Item1.Depth,Item2.Item1.Channels,Item2.Item1.ElementSize,Item2.Item1.Data,Item2.Item1.IsClosed,Item2
-0,0,1,1,0,GOGRATINGS,3,480,1,False,1,480,960,S16,1,2,605061136,False,NOGOAUDIO
-0,0,1,1,90,NOGOGRATINGS,3,480,1,False,1,480,960,S16,1,2,605052944,False,NOGOAUDIO

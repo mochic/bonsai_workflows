@@ -1,3 +1,0 @@
-Item1.ElementType,Item1.Size.Width,Item1.Size.Height,Item1.IsInvalid,Item1.Rows,Item1.Cols,Item1.Step,Item1.Depth,Item1.Channels,Item1.ElementSize,Item1.Data,Item1.IsClosed,Item2
-3,480,1,False,1,480,960,S16,1,2,605050896,False,NOGOAUDIO
-3,480,1,False,1,480,960,S16,1,2,605066256,False,NOGOAUDIO
