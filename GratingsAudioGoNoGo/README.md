@@ -14,11 +14,11 @@ The task is a closed-loop go-nogo behavioral task in which, on each trial, the s
 
 ### Gratings
 All files in the `stimuli\gratings` with the suffix `.csv` will be parsed as parameters for individual gratings stimuli. The format of these files is expected to be:
-	- “,” delineated
-	- first row should be parameter names
-		- supported parameters:
-			- Angle: Angle of the stimulus in degrees
-	- second row should be values to associate with the aforementioned variable names
+- “,” delineated
+- first row should be parameter names
+	- supported parameters:
+		- Angle: Angle of the stimulus in degrees
+- second row should be values to associate with the aforementioned variable names
 	
 
 ### Audio
@@ -33,20 +33,27 @@ Hardware interaction outside of audio playback is not yet enabled. Gamma correct
 ## Requirements
 Bonsai 0.7.0 (other versions may work but have not been tested)
 The following Bonsai packages are also required:
-	- BonVision (community package)
-	- Bonsai - Windows Input Library
-	- Bonsai - Vision Library
+- BonVision (community package)
+- Bonsai - Windows Input Library
+- Bonsai - Vision Library
 
 ## Workflow overview
 
+### Main
 ![Main](main.svg)
 
+### Trial Selection
 ![Trial Selection](trial-selection.svg)
 
+### Go Audio Trial
 ![Go Audio Trial](go-audio-trial.svg)
 
+
+### NoGo Audio Trial
 ![NoGo Audio Trial](nogo-audio-trial.svg)
 
+### Go Gratings Trial
 ![Go Gratings Trial](go-gratings-trial.svg)
 
+### NoGo Gratings Trial
 ![NoGo Gratings Trial](nogo-gratings-trial.svg)
