@@ -48,7 +48,6 @@ The following Bonsai packages are also required:
 ### Go Audio Trial
 ![Go Audio Trial](go-audio-trial.svg)
 
-
 ### NoGo Audio Trial
 ![NoGo Audio Trial](nogo-audio-trial.svg)
 
@@ -57,3 +56,7 @@ The following Bonsai packages are also required:
 
 ### NoGo Gratings Trial
 ![NoGo Gratings Trial](nogo-gratings-trial.svg)
+
+## Issues
+
+This was developed with the intent to be open loop however there were difficulties driving the task without a timer. Since it is driven by a timer, the task is closed-loop because the timer cannot be dynamically parameterized to allow for variable duration trials.

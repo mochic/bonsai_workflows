@@ -475,7 +475,7 @@ double.Parse(it[4]) as Angle
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="gl:Timer">
           <gl:DueTime>PT2S</gl:DueTime>
-          <gl:Period>PT3S</gl:Period>
+          <gl:Period>PT0S</gl:Period>
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:SelectMany">
@@ -908,7 +908,7 @@ double.Parse(it[4]) as Angle
                     <LocationX>0</LocationX>
                     <LocationY>0</LocationY>
                     <Layer>0</Layer>
-                    <Angle>0</Angle>
+                    <Angle>5156.62</Angle>
                     <SpatialFrequency>10</SpatialFrequency>
                     <TemporalFrequency>0</TemporalFrequency>
                     <Phase>0</Phase>
@@ -1443,6 +1443,12 @@ double.Parse(it[4]) as Angle
         <io:Suffix>None</io:Suffix>
         <io:IncludeHeader>true</io:IncludeHeader>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Last" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Repeat" />
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -1507,6 +1513,8 @@ double.Parse(it[4]) as Angle
       <Edge From="65" To="66" Label="Source1" />
       <Edge From="66" To="67" Label="Source1" />
       <Edge From="67" To="68" Label="Source1" />
+      <Edge From="68" To="69" Label="Source1" />
+      <Edge From="69" To="70" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
