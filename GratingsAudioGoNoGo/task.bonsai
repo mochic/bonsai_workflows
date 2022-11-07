@@ -233,7 +233,7 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="io:CsvReader">
-              <io:FileName>stimuli\gratings\2.csv</io:FileName>
+              <io:FileName>stimuli\gratings\1.csv</io:FileName>
               <io:ListSeparator>,</io:ListSeparator>
               <io:SkipRows>1</io:SkipRows>
             </Expression>
@@ -428,15 +428,15 @@ double.Parse(it[4]) as Angle
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
-            <Expression xsi:type="PropertyMapping">
+            <Expression xsi:type="InputMapping">
               <PropertyMappings>
                 <Property Name="FileName" />
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="al:AudioReader">
-                <al:FileName>stimuli\audio\0.wav</al:FileName>
-                <al:BufferLength>10</al:BufferLength>
+                <al:FileName>stimuli\audio\sin-440hz.wav</al:FileName>
+                <al:BufferLength>100</al:BufferLength>
                 <al:SampleRate>44100</al:SampleRate>
               </Combinator>
             </Expression>
@@ -475,7 +475,7 @@ double.Parse(it[4]) as Angle
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="gl:Timer">
           <gl:DueTime>PT2S</gl:DueTime>
-          <gl:Period>PT0S</gl:Period>
+          <gl:Period>PT3S</gl:Period>
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:SelectMany">
@@ -513,7 +513,7 @@ double.Parse(it[4]) as Angle
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="p1:CreateDiscreteUniform">
                 <p1:Lower>0</p1:Lower>
-                <p1:Upper>4</p1:Upper>
+                <p1:Upper>3</p1:Upper>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -542,7 +542,7 @@ double.Parse(it[4]) as Angle
                   </Expression>
                   <Expression xsi:type="LessThan">
                     <Operand xsi:type="IntProperty">
-                      <Value>3</Value>
+                      <Value>2</Value>
                     </Operand>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
@@ -703,7 +703,7 @@ double.Parse(it[4]) as Angle
                     <LocationX>0</LocationX>
                     <LocationY>0</LocationY>
                     <Layer>0</Layer>
-                    <Angle>2864.789</Angle>
+                    <Angle>0</Angle>
                     <SpatialFrequency>10</SpatialFrequency>
                     <TemporalFrequency>0</TemporalFrequency>
                     <Phase>0</Phase>
@@ -988,7 +988,7 @@ double.Parse(it[4]) as Angle
                   </Expression>
                   <Expression xsi:type="GreaterThanOrEqual">
                     <Operand xsi:type="IntProperty">
-                      <Value>3</Value>
+                      <Value>2</Value>
                     </Operand>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
@@ -1443,12 +1443,6 @@ double.Parse(it[4]) as Angle
         <io:Suffix>None</io:Suffix>
         <io:IncludeHeader>true</io:IncludeHeader>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Last" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Repeat" />
-      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -1513,8 +1507,6 @@ double.Parse(it[4]) as Angle
       <Edge From="65" To="66" Label="Source1" />
       <Edge From="66" To="67" Label="Source1" />
       <Edge From="67" To="68" Label="Source1" />
-      <Edge From="68" To="69" Label="Source1" />
-      <Edge From="69" To="70" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
